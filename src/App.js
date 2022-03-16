@@ -51,7 +51,7 @@ class App extends Component {
       var styleStatus = ''
       styleStatus = task.complete ? 'text-success' : styleStatus;
       return (
-          <div className='row p-1' key={index}>
+          <div className='row p-1 text-center' key={index}>
             <div className={'col-6 '+styleStatus} >{task.actividad}</div>
             <div className={'col-2 '+styleStatus} >{task.fechaIni}</div>
             <div className={'col-2 '+styleStatus} >{task.fechaFin}</div>
@@ -67,12 +67,16 @@ class App extends Component {
       )
     });
     return (
-      <div className="container-fluid border rounded m-2">
-        <div className='row border-bottom m-0' >
+      <div className="container border border-info rounded m-2 mx-auto">
+        <div className='row border-bottom m-0 ' >
           <div className='col-12 h1 text-center'>Lista de Tareas</div>
         </div>
         {renTask}
-        
+        <hr />
+        <div className='row m-1 ' >
+          <div className='col-12 h3 text-center'>Ingresar nueva tarea</div>
+        </div>
+        <Tarea addTask={this.addTask} />
       </div>
     );
   }

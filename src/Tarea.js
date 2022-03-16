@@ -17,24 +17,28 @@ export default class Tarea extends Component {
   }
 
   addtask = (e) => {
-    const iactividad=document.getElementById('actividad').value;
-    const ifechaIni=document.getElementById('fechaIni').value;
+    const iactividad=document.getElementById('actividad').value
+    const ifechaIni=document.getElementById('fechaIni').value
     const ifechaFin=document.getElementById('fechaFin').value
-    console.log(iactividad)
-    console.log(ifechaIni)
-    console.log(ifechaFin)
-    /*
     if (this.vacio(iactividad) || 
         this.vacio(ifechaIni) || 
-        this.vacio(ifechaFin)) {
-            alert('Debe llenar todos los campos')
-            return};
+        this.vacio(ifechaFin)) 
+        {
+          alert('Debe llenar todos los campos')
+          return
+        };
+    /*
     if (!this.validateFecha(ifechaIni) ||
-        !this.validateFecha(ifechaFin)){
-            alert('Fecha invalida')
-            return 
-    }
+        !this.validateFecha(ifechaFin))
+        {
+          alert('Fecha invalida');
+          return 
+        }
     */
+    if (moment(ifechaFin,'L') < moment(ifechaIni,'L')){
+        alert('La fecha de inicio debe ser mayor o igual a la fecha de fin');
+        return
+    }
     const task = {
         actividad:iactividad,
         fechaIni:ifechaIni,
@@ -52,20 +56,21 @@ export default class Tarea extends Component {
             <label className="sr-only">Tarea</label>
             <input type="text" className="form-control mb-2 mr-sm-2 mb-sm-0" 
             id="actividad" placeholder="Tarea"/>
-
+            <br />
             <label className="sr-only">Fecha inicio</label>
             <div className="input-group mb-2 mr-sm-2 mb-sm-0">
-                <span className='fa fa-calendar pt-1 pr-1' ></span>
-                <Fecha id='fechaIni'/>
+              <span className='fa fa-calendar pt-1 pr-1' ></span>
+              Fecha Inicio <Fecha id='fechaIni'/>
             </div>
-
+            <br />
             <label className="sr-only">Fecha Fin</label>
             <div className="input-group mb-2 mr-sm-2 mb-sm-0">
-            <span className='fa fa-calendar pt-1 pr-1' ></span>
-                <Fecha id='fechaFin'/>
+              <span className='fa fa-calendar pt-1 pr-1' ></span>
+              Fecha Fin <Fecha id='fechaFin'/>
             </div>
+            <br />
             <div className='fa fa-plus-circle' onClick={this.addtask}></div>
-            </form>
+        </form>
       </div>
     )
   }

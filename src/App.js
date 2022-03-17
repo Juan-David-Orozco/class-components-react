@@ -48,7 +48,11 @@ class App extends Component {
 
   render() {
     const renTask = this.state.tasks.map((task,index) => {
-      var styleStatus = ''
+      var styleStatus = 'text-secondary'
+      var fecha = Date.now()
+      styleStatus = (Number(moment(task.fechaFin,'L')+86399999) - fecha) < 86400000 ? 'text-warning': styleStatus;
+      styleStatus = (Number(moment(task.fechaFin,'L')+86399999) - fecha) < 0 ? 'text-danger': styleStatus; 
+      styleStatus = (moment(task.fechaIni,'L') < fecha && moment(task.fechaFin,'L') > fecha) ? 'text-primary' : styleStatus; 
       styleStatus = task.complete ? 'text-success' : styleStatus;
       return (
           <div className='row p-1 text-center' key={index}>

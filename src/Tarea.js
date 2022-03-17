@@ -43,13 +43,32 @@ export default class Tarea extends Component {
         actividad:iactividad,
         fechaIni:ifechaIni,
         fechaFin:ifechaFin,
-        complete:false
+        complete:false,
+        index:this.props.index
     }
     document.getElementById('actividad').value = ''
-    this.props.addTask(task);
+    if (this.props.addTask)
+      this.props.addTask(task);
+    else if (this.props.saveTask)
+      this.props.saveTask(task)
+  }
+
+  componentDidMount(){
+    if (this.props.task){
+      document.getElementById('actividad').value = this.props.task.actividad
+      document.getElementById('fechaIni').value = this.props.task.fechaIni
+      document.getElementById('fechaFin').value = this.props.task.fechaFin
+    }
   }
 
   render() {
+    var cancelButton = ''
+    var icon ='fa-plus-circle'
+    if (this.props.task) {
+      icon = 'fa-edit'
+      cancelButton = <div className='fa fa-ban pl-1' onClick={this.addtask}></div>
+    }
+
     return (
       <div className='m-2' >
         <form className="form-inline">
@@ -69,7 +88,8 @@ export default class Tarea extends Component {
               Fecha Fin <Fecha id='fechaFin'/>
             </div>
             <br />
-            <div className='fa fa-plus-circle' onClick={this.addtask}></div>
+            <div className={'fa '+icon} onClick={this.addtask}></div>
+            {cancelButton}
         </form>
       </div>
     )

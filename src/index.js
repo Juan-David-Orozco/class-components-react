@@ -1,7 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './App';
+//import App from './App';
+import AppRegistro from './App_Registro'
 import reportWebVitals from './reportWebVitals';
 
 const tasks = [
@@ -15,12 +16,22 @@ const tasks = [
     {actividad:'Tarea 8', fechaIni:'07/04/2019', fechaFin:'29/07/2018',complete:false}
 ]
 
+/*
 ReactDOM.render(
   <React.StrictMode>
     <App tasks={tasks}/>
   </React.StrictMode>,
   document.getElementById('root')
 );
+*/
+
+ReactDOM.render(
+  <React.StrictMode>
+    <AppRegistro />
+  </React.StrictMode>,
+  document.getElementById('root')
+);
+
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))

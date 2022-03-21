@@ -8,12 +8,14 @@ export default class Form extends Component {
   constructor(props){
     super(props);
     this.state = {
-      buscarPais:''
+      buscarPais:'',
+      paises: []
     }
   }
 
   manejoOnChange = (e) => {
     const nombrePais = e.target.value;
+    console.log(nombrePais)
     if (nombrePais.length > 2){
       this.setState({buscarPais:nombrePais});
     }
@@ -45,9 +47,9 @@ export default class Form extends Component {
               />;
     }
     return (
-      <div class='border m-3 p-3'>
+      <div class='border border-rounded border-info m-3 p-3'>
         <h2>{this.props.formName}</h2>
-        <div class="form-row">
+        <div class="row">
           <div class="form-group col-md-6">
             <label for="inputName1">{this.props.input1}</label>
             <div class='input-group'>
@@ -67,7 +69,7 @@ export default class Form extends Component {
             </div>
           </div>
         </div>
-        <div class="form-row">
+        <div class="row">
           <div class="form-group col-md-6">
             <label for="inputEmail4">{this.props.input3}</label>
             <div class='input-group'>
@@ -96,7 +98,7 @@ export default class Form extends Component {
             <input type="text" className="form-control" id="inputAddress" placeholder={this.props.input5} />
           </div>
         </div>
-        <div class="form-row">
+        <div class="row">
           <div class="form-group col-md-6">
             <label for="inputCity">{this.props.input6}</label>
             <input className="form-control" type='text' placeholder='País' id='pais'

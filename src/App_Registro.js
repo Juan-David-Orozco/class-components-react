@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import './App.css';
-import Form from './Form'
+import Form from './comp_AppRegistro/Form'
 
 export default class App_Registro extends Component {
   render() {

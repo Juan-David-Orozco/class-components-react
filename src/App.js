@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import './App.css';
-import Tarea from './Tarea';
+import Tarea from './comp_App/Tarea';
 import moment from 'moment';
 
 class App extends Component {
@@ -71,7 +70,11 @@ class App extends Component {
 
   completeTask = (index) => {
     const tempTasks = this.state.tasks;
-    tempTasks[index].complete = true;
+    if (tempTasks[index].complete === false) {
+      tempTasks[index].complete = true;
+    } else if (tempTasks[index].complete === true) {
+      tempTasks[index].complete = false;
+    }
     this.setState({tasks:tempTasks});
   }
 

@@ -33,7 +33,7 @@ class Fecha extends Component {
         selected={this.state.startDate}
         onChange={this.handleChange}
         id={this.props.id}
-        locale='es'
+        //locale='es'
     />;
   }
 }

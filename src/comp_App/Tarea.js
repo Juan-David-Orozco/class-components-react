@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
-import '../node_modules/bootstrap/dist/css/bootstrap.css'
-import '../node_modules/font-awesome/css/font-awesome.css'
+import '/node_modules/bootstrap/dist/css/bootstrap.css'
+import '/node_modules/font-awesome/css/font-awesome.css'
 import Fecha from './Fecha';
 import moment from 'moment';
 
@@ -35,8 +35,8 @@ export default class Tarea extends Component {
           return 
         }
     */
-    if (moment(ifechaFin,'L') < moment(ifechaIni,'L')){
-        alert('La fecha de inicio debe ser mayor o igual a la fecha de fin');
+    if (moment(ifechaFin,'L') >= moment(ifechaIni,'L')){
+        alert('La fecha de fin debe ser mayor o igual a la fecha de inicio');
         return
     }
     const task = {

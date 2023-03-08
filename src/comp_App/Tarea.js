@@ -4,49 +4,51 @@ import '/node_modules/font-awesome/css/font-awesome.css'
 import Fecha from './Fecha';
 import moment from 'moment';
 
-
 export default class Tarea extends Component {
 
   vacio = (elemento) => {
-      return (elemento === '');
+    return (elemento === '');
   }
 
   validateFecha = (fecha) => {
-    return (moment(fecha,'L',true).isValid() ||
-            moment(fecha,'l',true).isValid());
+    return (moment(fecha,'L',true).isValid() || moment(fecha,'l',true).isValid());
   }
 
   addtask = (e) => {
-    const iactividad=document.getElementById('actividad').value
-    const ifechaIni=document.getElementById('fechaIni').value
-    const ifechaFin=document.getElementById('fechaFin').value
-    if (this.vacio(iactividad) || 
-        this.vacio(ifechaIni) || 
-        this.vacio(ifechaFin)) 
-        {
-          alert('Debe llenar todos los campos')
-          return
-        };
-    /*
-    if (!this.validateFecha(ifechaIni) ||
-        !this.validateFecha(ifechaFin))
-        {
-          alert('Fecha invalida');
-          return 
-        }
-    */
+    // Captura de valores del formulario
+    const iactividad = document.getElementById('actividad').value
+    const ifechaIni = document.getElementById('fechaIni').value
+    const ifechaFin = document.getElementById('fechaFin').value
+    console.log(iactividad, ifechaIni, ifechaFin)
+
+    // Validacion campos completos
+    if (this.vacio(iactividad) || this.vacio(ifechaIni) || this.vacio(ifechaFin)) {
+      alert('Debe llenar todos los campos')
+      return
+    };
+    /*/ Validacion formato fecha
+    if (!this.validateFecha(ifechaIni) || !this.validateFecha(ifechaFin)) {
+      alert('Fecha invalida');
+      return 
+    }*/
+    // Validacion fechaIni y fechaFin
     if (moment(ifechaFin,'L') >= moment(ifechaIni,'L')){
-        alert('La fecha de fin debe ser mayor o igual a la fecha de inicio');
-        return
+      alert('La fecha de fin debe ser mayor o igual a la fecha de inicio');
+      return
     }
+
+    // Asignacion objeto task con valores del formulario
     const task = {
-        actividad:iactividad,
-        fechaIni:ifechaIni,
-        fechaFin:ifechaFin,
-        complete:false,
-        index:this.props.index
+        actividad: iactividad,
+        fechaIni: ifechaIni,
+        fechaFin: ifechaFin,
+        complete: false,
+        index: this.props.index
     }
+    // Reseteo campo Tarea
     document.getElementById('actividad').value = ''
+
+    // Ejecucion funciones del componente padre
     if (this.props.addTask)
       this.props.addTask(task);
     else if (this.props.saveTask)
@@ -66,9 +68,8 @@ export default class Tarea extends Component {
     var icon ='fa-plus-circle'
     if (this.props.task) {
       icon = 'fa-edit'
-      cancelButton = <div className='fa fa-ban pl-1' onClick={this.addtask}></div>
+      cancelButton = <div className='fa fa-ban pl-1' onClick={this.props.cancelUpdateTask}></div>
     }
-
     return (
       <div className='m-2' >
         <form className="form-inline">
@@ -94,4 +95,5 @@ export default class Tarea extends Component {
       </div>
     )
   }
+
 }
